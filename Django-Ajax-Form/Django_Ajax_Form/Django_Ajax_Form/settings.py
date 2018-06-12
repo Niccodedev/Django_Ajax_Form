@@ -54,7 +54,7 @@ ROOT_URLCONF = 'Django_Ajax_Form.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'Django_Ajax_Form/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
