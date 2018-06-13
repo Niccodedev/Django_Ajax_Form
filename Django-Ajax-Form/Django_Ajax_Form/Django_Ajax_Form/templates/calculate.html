@@ -1,17 +1,15 @@
-{% extends "base.html" %}
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-{% block content %}
+
 <form id="ajax_form"  action="">
   {% csrf_token %}
-
   {{form.as_p}}
   <input type="submit" value="Calculate">
 </form>
-{% endblock %}
+<p id="result"></p>
 
-{% block javascript %}
-  <script>
-  $("#ajax_form").on("submit", function(evt) {
+<script>
+$("#ajax_form").on("submit", function(evt) {
   evt.preventDefault();
   console.log("sent Ajax_call");
   let operator = $("input:radio[name='operator']:checked").val();
@@ -23,11 +21,12 @@
     data
   ) {
     if (data.success) {
-      alert(data.result);
+      console.log(`The result is ${data.result}`);
+      $("#ajax_form").fadeOut();
+      $("#result").text(`The result is ${data.result}`);
     } else {
       alert(data.error);
     }
   });
 });
 </script>
-{% endblock %}
